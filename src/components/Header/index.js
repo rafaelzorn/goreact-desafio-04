@@ -1,26 +1,67 @@
-import React, { Fragment } from 'react';
-import { StyledHeader, Categories } from './styles';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Loading from '../Loading';
+import Error from '../Error';
+import { Creators as CategoriesActions } from '../../store/ducks/categories';
+import { Creators as ProductsAction } from '../../store/ducks/products';
 
-const Header = () => (
-    <Fragment>
-        <StyledHeader>
-            <h1>GoCommerce</h1>
+import { StyledHeader, Categories, Title } from './styles';
 
-            <div className="cart">
-                <a href="#">
-                    <i className="fa fa-shopping-cart" /> Meu Carrinho (3)
-                </a>
-            </div>
-        </StyledHeader>
+class Header extends Component {
+    componentDidMount() {
+        const { getCategoriesRequest } = this.props;
+        getCategoriesRequest();
+    }
 
-        <Categories>
-            <ul>
-                <li>
-                    <a href="#">Camisetas</a>
-                </li>
-            </ul>
-        </Categories>
-    </Fragment>
-);
+    render() {
+        const { categories, getProductsRequest } = this.props;
 
-export default Header;
+        return (
+            <Fragment>
+                <StyledHeader>
+                    <Title to="/">GoCommerce</Title>
+
+                    <div className="cart">
+                        <Link to="carrinho">
+                            <i className="fa fa-shopping-cart" /> Meu Carrinho (3)
+                        </Link>
+                    </div>
+                </StyledHeader>
+
+                {categories.loading ? (
+                    <Loading message="Aguarde, carregando categorias" />
+                ) : (
+                    <Categories>
+                        <ul>
+                            {categories.data.map(category => (
+                                <li
+                                    onClick={() => getProductsRequest(category.id)}
+                                    key={category.id}
+                                    onKeyUp={this.handleKeyUp}
+                                    role="presentation"
+                                >
+                                    {category.title}
+                                </li>
+                            ))}
+                        </ul>
+                    </Categories>
+                )}
+
+                <Error />
+            </Fragment>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    categories: state.categories,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ ...CategoriesActions, ...ProductsAction }, dispatch);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Header);

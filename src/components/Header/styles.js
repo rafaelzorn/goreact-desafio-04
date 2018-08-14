@@ -1,15 +1,17 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+export const Title = styled(Link)`
+    color: #ff9696;
+    font-size: 32px;
+    font-weight: 800;
+    text-decoration: none;
+`;
 
 export const StyledHeader = styled.header`
     display: flex;
     padding-top: 50px;
     margin-bottom: 20px;
-
-    h1 {
-        color: #ff9696;
-        font-size: 32px;
-        font-weight: 800;
-    }
 
     .cart {
         flex: 1;
@@ -41,18 +43,16 @@ export const Categories = styled.div`
     ul > li {
         padding-right: 10px;
         display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 700;
+        opacity: 0.7;
+        cursor: pointer;
 
-        a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            opacity: 0.7;
-
-            &:hover {
-                transition: 0.5s;
-                opacity: 1;
-            }
+        &:hover {
+            transition: 0.5s;
+            opacity: 1;
         }
     }
 `;

@@ -17,7 +17,7 @@ injectGlobal`
     body {
         text-rendering: optimizeLegibility !important;
         -webkit-font-smoothing: antialiased !important;
-        font-family: sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 
     ul {
