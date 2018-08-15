@@ -22,10 +22,14 @@ Instalar as dependências do projeto:
 yarn
 ```
 
-Por fim, execute o servidor de desenvolvimento e o aplicativo deve estar disponível na seguinte URL: http://localhost:3000
+Por fim, execute o servidor de desenvolvimento e o JSON-server, o aplicativo deve estar disponível na seguinte URL: http://localhost:3000
 
 ```
 yarn start
+```
+
+```
+json-server server.json -p 3001 -w -d 500
 ```
 
 ## Screenshots
@@ -38,5 +42,6 @@ yarn start
 
 -   [React](https://reactjs.org)
 -   [Axios](https://github.com/axios/axios)
+-   [JSON-server](https://github.com/typicode/json-server)
 -   [Redux Saga](https://redux-saga.js.org)
 -   [Redux](https://redux.js.org)
