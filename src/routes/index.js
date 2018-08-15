@@ -8,6 +8,7 @@ import Cart from '../pages/cart';
 const Routes = () => (
     <Switch>
         <Route exact path="/" component={Products} />
+        <Route path="/categorias/:id/produtos" component={Products} />
         <Route path="/produtos/:id" component={ProductDetail} />
         <Route path="/carrinho" component={Cart} />
     </Switch>

@@ -1,70 +1,139 @@
-import React, { Fragment } from 'react';
-import { Products } from './styles';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as CartActions } from '../../store/ducks/cart';
+import { Container, TableContainer, Table } from './styles';
 
-const Cart = () => (
-    <Fragment>
-        <Products>
-            <table>
-                <thead>
-                    <th className="img" />
-                    <th className="product">PRODUTO</th>
-                    <th className="value">VALOR</th>
-                    <th className="quantity">QTD</th>
-                    <th className="subtotal">SUBTOTAL</th>
-                    <th className="delete" />
-                </thead>
-                <tbody>
-                    <tr>
-                        <td className="img">
-                            <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" />
-                        </td>
-                        <td className="product">
-                            <span className="name">Camiseta Trok</span>
-                            <span className="brand">Element</span>
-                        </td>
-                        <td className="value">R$ 50,00</td>
-                        <td className="quantity">
-                            <input value="2" />
-                        </td>
-                        <td className="subtotal">R$ 100,00</td>
-                        <td className="delete">X</td>
-                    </tr>
+class Cart extends Component {
+    handleQuantityChange = (id, value) => {
+        const { setQuantity } = this.props;
+        setQuantity(id, value < 1 ? 1 : value);
+    };
 
-                    <tr>
-                        <td className="img">
-                            <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" />
-                        </td>
-                        <td className="product">
-                            <span className="name">Camiseta Trok</span>
-                            <span className="brand">Element</span>
-                        </td>
-                        <td className="value">R$ 50,00</td>
-                        <td className="quantity">
-                            <input value="2" />
-                        </td>
-                        <td className="subtotal">R$ 100,00</td>
-                        <td className="delete">X</td>
-                    </tr>
+    renderCartProducts = () => {
+        const { cart, removeProduct, total } = this.props;
 
-                    <tr>
-                        <td className="img">
-                            <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" />
-                        </td>
-                        <td className="product">
-                            <span className="name">Camiseta Trok</span>
-                            <span className="brand">Element</span>
-                        </td>
-                        <td className="value">R$ 50,00</td>
-                        <td className="quantity">
-                            <input value="2" />
-                        </td>
-                        <td className="subtotal">R$ 100,00</td>
-                        <td className="delete">X</td>
-                    </tr>
-                </tbody>
-            </table>
-        </Products>
-    </Fragment>
-);
+        return (
+            <Fragment>
+                <TableContainer>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th />
+                                <th>PRODUTO</th>
+                                <th>VALOR</th>
+                                <th>QTD</th>
+                                <th>SUBTOTAL</th>
+                                <th />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cart.data.map(product => (
+                                <tr className="product" key={product.data.id}>
+                                    <td style={{ width: '5%' }}>
+                                        <img src={product.data.image} alt={product.data.name} />
+                                    </td>
+                                    <td style={{ width: '50%' }}>
+                                        <span className="title">{product.data.name}</span> <br />
+                                        <span className="brand">{product.data.brand}</span>
+                                    </td>
+                                    <td style={{ width: '15%' }}>
+                                        <span className="price">R$ {product.data.price}</span>
+                                    </td>
+                                    <td style={{ width: '10%' }}>
+                                        <input
+                                            type="number"
+                                            name="quatity"
+                                            min={1}
+                                            value={product.quantity}
+                                            onChange={(e) => {
+                                                this.handleQuantityChange(
+                                                    product.data.id,
+                                                    e.target.value,
+                                                );
+                                            }}
+                                        />
+                                    </td>
+                                    <td style={{ width: '15%' }}>
+                                        <span className="price">R$ {product.subTotal}</span>
+                                    </td>
+                                    <td style={{ width: '5%' }}>
+                                        <button
+                                            type="button"
+                                            onClick={() => removeProduct(product)}
+                                        >
+                                            X
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </TableContainer>
 
-export default Cart;
+                <div className="total">
+                    <div>
+                        <span className="text">TOTAL</span>
+                        <span className="price">R$ {total}</span>
+                    </div>
+                </div>
+            </Fragment>
+        );
+    };
+
+    render() {
+        const { cart } = this.props;
+
+        return (
+            <Container>
+                {cart.data.length > 0 ? (
+                    this.renderCartProducts()
+                ) : (
+                    <div className="teste">
+                        Ops, você não tem nenhum produto adicionado ao carrinho :(
+                    </div>
+                )}
+            </Container>
+        );
+    }
+}
+
+Cart.propTypes = {
+    setQuantity: PropTypes.func.isRequired,
+    removeProduct: PropTypes.func.isRequired,
+    total: PropTypes.string.isRequired,
+    cart: PropTypes.shape({
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                name: PropTypes.string,
+                brand: PropTypes.string,
+                price: PropTypes.string,
+                quantity: PropTypes.number,
+                subTotal: PropTypes.string,
+            }),
+        ),
+    }).isRequired,
+};
+
+const mapStateToProps = state => ({
+    cart: {
+        ...state.cart,
+        data: state.cart.data.map(item => ({
+            ...item,
+            subTotal: (item.data.price * item.quantity).toFixed(2),
+        })),
+    },
+
+    total: state.cart.data
+        .reduce((prevVal, item) => prevVal + item.data.price * item.quantity, 0)
+        .toFixed(2),
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Cart);

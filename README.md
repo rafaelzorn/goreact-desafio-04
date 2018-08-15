@@ -30,7 +30,13 @@ yarn start
 
 ## Screenshots
 
+![Screenshot 1](https://image.ibb.co/gfu9Vp/home.png)
+![Screenshot 2](https://image.ibb.co/gRMCi9/detalhe.png)
+![Screenshot 3](https://image.ibb.co/d16Oqp/carrinho.png)
+
 ## Construído com
 
 -   [React](https://reactjs.org)
+-   [Axios](https://github.com/axios/axios)
 -   [Redux Saga](https://redux-saga.js.org)
+-   [Redux](https://redux.js.org)

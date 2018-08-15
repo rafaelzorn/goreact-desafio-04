@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Content = styled.div`
     display: flex;
-    justify-content: center;
-
-    > div {
-        width: 80%;
-    }
+    flex-direction: column;
+    margin: 5% 10%;
+    height: 100%;
 `;

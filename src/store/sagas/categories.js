@@ -10,6 +10,6 @@ export function* getCategories() {
 
         yield put(CategoriesActions.getCategoriesSuccess(response.data));
     } catch (err) {
-        yield put(ErrorsActions.setError('danger', 'Não foi possível listar as categorias.'));
+        yield put(ErrorsActions.setError('danger', 'Não foi possível carregar as categorias.'));
     }
 }

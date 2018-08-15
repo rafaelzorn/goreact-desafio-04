@@ -1,58 +1,66 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Title = styled(Link)`
-    color: #ff9696;
-    font-size: 32px;
-    font-weight: 800;
-    text-decoration: none;
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
 `;
 
-export const StyledHeader = styled.header`
+export const ContainerSection = styled.div`
     display: flex;
-    padding-top: 50px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 
-    .cart {
-        flex: 1;
-        position: relative;
-        top: 3px;
-        text-align: right;
-        align-self: center;
+    .title {
+        color: #ff9696;
+        font-weight: 800;
+        user-select: none;
+        font-size: 40px;
+    }
+`;
 
-        a {
-            text-decoration: none;
-            color: #757575;
-            opacity: 0.8;
-
-            &:hover {
-                opacity: 1;
-                transition: 0.5s;
-            }
-        }
+export const Cart = styled(Link)`
+    color: #bdc3c7;
+    user-select: none;
+    text-decoration: none;
+    font-size: 15px;
+    &:hover {
+        transition: 0.5s;
+        color: #7a7a7a;
     }
 `;
 
 export const Categories = styled.div`
     display: flex;
-    padding: 15px 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 35px;
     background: #ff9696;
     border-radius: 3px;
-    margin-bottom: 20px;
+    color: #fff;
+    width: 100%;
+`;
 
-    ul > li {
-        padding-right: 10px;
-        display: inline-block;
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 700;
-        opacity: 0.7;
-        cursor: pointer;
+export const Menu = styled(Link)`
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.8;
+    text-transform: uppercase;
 
-        &:hover {
-            transition: 0.5s;
-            opacity: 1;
-        }
+    &.home {
+        background: #f66;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    &:hover {
+        transition: 0.5s;
+        opacity: 1;
     }
 `;

@@ -8,9 +8,9 @@ import { Container } from './styles';
 
 const Error = ({ error: { type, message, visible }, hideError }) => visible && (
     <Container>
-        <p>{message}</p>
+        <div className="box-error">
+            <p>{message}</p>
 
-        <div>
             <button type="button" onClick={hideError}>
                     X
             </button>

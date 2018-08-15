@@ -2,26 +2,25 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    align-items: center;
-    background: #ff4949;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border-radius: 3px;
-    color: #fff;
+    justify-content: center;
 
-    > p {
-        flex: 1;
-    }
+    .box-error {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: #ff3a3a;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 3px;
 
-    > div {
-        flex: 1;
-
-        button {
-            float: right;
+        > button {
             border: none;
             background: none;
             font-weight: bold;
             cursor: pointer;
+            color: #fff;
         }
     }
 `;

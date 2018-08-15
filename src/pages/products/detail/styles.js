@@ -2,14 +2,19 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     .img {
-        flex: 1;
-        border: 1px solid #eee;
-        text-align: center;
-        padding: 25px 0 25px 0;
+        display: flex;
+        justify-content: center;
+        width: 49%
+        min-width: 330px;
+        height: 350px;
+        border: 1px solid #cecece;
         border-radius: 3px;
+        padding: 30px;
 
         img {
             width: 200px;
@@ -17,49 +22,42 @@ export const Container = styled.div`
     }
 
     .info {
-        flex: 1;
-        padding: 10px 0 0 30px;
-
-        span {
-            display: block;
-        }
+        display: flex;
+        flex-direction: column;
+        width: 49%;
+        min-width: 330px;
+        height: 350px;
 
         .name {
-            font-size: 35px;
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-size: 28px;
+            font-weight: bold;
         }
 
         .brand {
-            color: #cecece;
-            font-size: 22px;
-            margin-bottom: 50px;
+            font-size: 18px;
+            color: #d6d6d6;
         }
 
-        .value {
-            font-size: 35px;
-            font-weight: 600;
+        .price {
+            margin-top: 60px;
+            font-size: 28px;
             color: #37bea9;
-            margin-bottom: 10px;
+            font-weight: bold;
         }
 
-        .button {
-            border: none;
+        button {
+            margin: 20px 0;
             background: #37bea9;
-            display: block;
-            text-align: center;
-            padding: 15px 0 15px 0;
-            text-decoration: none;
-            font-weight: 600;
-            color: #fff;
+            border: none;
             border-radius: 3px;
-            width: 100%;
-            cursor: pointer;
-            opacity: 0.8;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            height: 50px;
+            text-transform: uppercase;
 
             &:hover {
-                transition: 1s;
-                opacity: 1;
+                background: #2d9f8d;
             }
         }
     }

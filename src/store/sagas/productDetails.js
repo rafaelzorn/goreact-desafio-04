@@ -11,7 +11,7 @@ export function* getProductDetails(action) {
         yield put(ProductDetailsActions.getProductDetailsSuccess(response.data));
     } catch (err) {
         yield put(
-            ErrorsActions.setError('danger', 'Não foi possível obter os detalhes do produto.'),
+            ErrorsActions.setError('danger', 'Não foi possível carregar os detalhes do produto.'),
         );
     }
 }

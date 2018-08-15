@@ -12,45 +12,39 @@ export const Product = styled(Link)`
     display: flex;
     flex-direction: column;
     padding: 20px 30px;
-    border: 1px solid #ececec;
-    border-radius: 3px;
+    align-items: center;
     text-decoration: none;
-    color: #000;
-    opacity: 0.8;
+    border: 1px solid #eee;
+    border-radius: 4px;
 
     &:hover {
-        opacity: 1;
-        transition: 2s;
+        transition: 0.5s;
+        box-shadow: 0 2px 5px 0 #bfbfbf;
     }
 
     img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
         margin-bottom: 15px;
         width: 180px;
+        height: auto;
     }
 
-    .info {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+    .name {
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 15px;
+        color: #000;
+    }
 
-        .name {
-            font-size: 14px;
-            font-weiht: 600;
-            margin-bottom: 5px;
-        }
+    .brand {
+        margin-bottom: 15px;
+        font-size: 12px;
+        color: #ccc;
+    }
 
-        .brand {
-            color: #cecece;
-            margin-bottom: 20px;
-        }
-
-        .value {
-            font-size: 25px;
-            font-weight: 600;
-            color: #37bea9;
-        }
+    .price {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 22px;
+        color: #37bea9;
     }
 `;

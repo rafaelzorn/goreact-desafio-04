@@ -3,7 +3,7 @@ import { injectGlobal } from 'styled-components';
 import 'font-awesome/css/font-awesome.css';
 
 injectGlobal`
-    * {
+    *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -14,13 +14,13 @@ injectGlobal`
         height: 100%;
     }
 
-    body {
+    body{
         text-rendering: optimizeLegibility !important;
         -webkit-font-smoothing: antialiased !important;
         font-family: 'Roboto', sans-serif;
     }
 
-    ul {
-        list-style: none;
+    button {
+        cursor: pointer;
     }
 `;

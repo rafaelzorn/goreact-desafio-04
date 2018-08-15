@@ -1,35 +1,48 @@
 import React, { Component, Fragment } from 'react';
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Loading from '../../components/Loading';
 import { Creators as ProductsActions } from '../../store/ducks/products';
-
+import Loading from '../../components/Loading';
 import { Container, Product } from './styles';
 
 class Products extends Component {
     componentDidMount() {
-        const { getProductsRequest } = this.props;
-        getProductsRequest(1);
+        this.requestProducts();
     }
+
+    componentDidUpdate(prevProps) {
+        const { match } = this.props;
+
+        if (match.params.id !== prevProps.match.params.id) {
+            this.requestProducts();
+        }
+    }
+
+    requestProducts = () => {
+        const { getProductsRequest, getProductsByCategoryIdRequest, match } = this.props;
+
+        if (match.params.id === undefined) {
+            getProductsRequest();
+        } else {
+            getProductsByCategoryIdRequest(match.params.id);
+        }
+    };
 
     render() {
         const { products } = this.props;
 
         return (
             <Fragment>
-                {products.loading ? <Loading message="Aguarde, carregando produtos" /> : null}
+                {products.loading ? <Loading /> : null}
 
                 <Container>
                     {products.data.map(product => (
                         <Product to={`/produtos/${product.id}`} key={product.id}>
                             <img src={product.image} alt={product.name} />
-
-                            <div className="info">
-                                <span className="name">{product.name}</span>
-                                <span className="brand">{product.brand}</span>
-                                <span className="value">R$ {product.price}</span>
-                            </div>
+                            <div className="name">{product.name}</div>
+                            <div className="brand">{product.brand}</div>
+                            <div className="price">R$ {product.price}</div>
                         </Product>
                     ))}
                 </Container>
@@ -37,6 +50,26 @@ class Products extends Component {
         );
     }
 }
+
+Products.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string,
+        }),
+    }).isRequired,
+    getProductsRequest: PropTypes.func.isRequired,
+    getProductsByCategoryIdRequest: PropTypes.func.isRequired,
+    products: PropTypes.shape({
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                name: PropTypes.string,
+                brand: PropTypes.string,
+                price: PropTypes.number,
+            }),
+        ),
+    }).isRequired,
+};
 
 const mapStateToProps = state => ({
     products: state.products,
