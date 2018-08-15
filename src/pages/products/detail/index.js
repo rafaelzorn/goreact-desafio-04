@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { formatReal } from '../../../helpers';
 import { Creators as ProductDetailsActions } from '../../../store/ducks/productDetails';
 import { Creators as CartActions } from '../../../store/ducks/cart';
 import Loading from '../../../components/Loading';
@@ -38,7 +39,9 @@ class ProductDetail extends Component {
                             <span className="name">{productDetails.data.name}</span>
                             <span className="brand">{productDetails.data.brand}</span>
 
-                            <span className="price">R$ {productDetails.data.price}</span>
+                            <span className="price">
+                                R$ {formatReal(productDetails.data.price)}
+                            </span>
 
                             <button type="button" onClick={() => this.addToCart(productDetails)}>
                                 ADICIONAR AO CARRINHO

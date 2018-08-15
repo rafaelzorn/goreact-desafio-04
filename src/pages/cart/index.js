@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { formatReal } from '../../helpers';
 import { Creators as CartActions } from '../../store/ducks/cart';
 import { Container, TableContainer, Table } from './styles';
 
@@ -39,7 +40,9 @@ class Cart extends Component {
                                         <span className="brand">{product.data.brand}</span>
                                     </td>
                                     <td style={{ width: '15%' }}>
-                                        <span className="price">R$ {product.data.price}</span>
+                                        <span className="price">
+                                            R$ {formatReal(product.data.price)}
+                                        </span>
                                     </td>
                                     <td style={{ width: '10%' }}>
                                         <input
@@ -56,7 +59,9 @@ class Cart extends Component {
                                         />
                                     </td>
                                     <td style={{ width: '15%' }}>
-                                        <span className="price">R$ {product.subTotal}</span>
+                                        <span className="price">
+                                            R$ {formatReal(product.subTotal)}
+                                        </span>
                                     </td>
                                     <td style={{ width: '5%' }}>
                                         <button
@@ -75,7 +80,7 @@ class Cart extends Component {
                 <div className="total">
                     <div>
                         <span className="text">TOTAL</span>
-                        <span className="price">R$ {total}</span>
+                        <span className="price">R$ {formatReal(total)}</span>
                     </div>
                 </div>
             </Fragment>
@@ -122,13 +127,11 @@ const mapStateToProps = state => ({
         ...state.cart,
         data: state.cart.data.map(item => ({
             ...item,
-            subTotal: (item.data.price * item.quantity).toFixed(2),
+            subTotal: item.data.price * item.quantity,
         })),
     },
 
-    total: state.cart.data
-        .reduce((prevVal, item) => prevVal + item.data.price * item.quantity, 0)
-        .toFixed(2),
+    total: state.cart.data.reduce((prevVal, item) => prevVal + item.data.price * item.quantity, 0),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);

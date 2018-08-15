@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { formatReal } from '../../helpers';
 import { Creators as ProductsActions } from '../../store/ducks/products';
 import Loading from '../../components/Loading';
 import { Container, Product } from './styles';
@@ -42,7 +43,7 @@ class Products extends Component {
                             <img src={product.image} alt={product.name} />
                             <div className="name">{product.name}</div>
                             <div className="brand">{product.brand}</div>
-                            <div className="price">R$ {product.price}</div>
+                            <div className="price">R$ {formatReal(product.price)}</div>
                         </Product>
                     ))}
                 </Container>
