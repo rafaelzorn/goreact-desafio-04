@@ -1,47 +1,32 @@
-# Rocketseat GoReact 4º Desafio
+<p align="center">
+  <h3 align="center">4rd Rocketseat GoReact Challenge</h3>
+</p>
 
-4º desafio do curso GoReact da Rocketseat.
+---
 
-### Instalando
+## Overview
 
-Primeiro você tem que usar o seu Terminal para chegar ao diretório que você deseja armazenar o projeto. Então você executa:
+4rd challenge of the Rocketseat GoReact course.
 
-```
-git clone git@github.com:rafaelzorn/goreact-desafio-04.git
-```
+## Preview
 
-Acesse o diretório criado e você estará no diretório-raiz do projeto:
+![preview-1](./preview-1.png)
+![preview-2](./preview-2.png)
+![preview-3](./preview-3.png)
 
-```
-cd goreact-desafio-04
-```
+## Running the project
 
-Instalar as dependências do projeto:
+- Clone this repository
+- Install all dependencies using the command `yarn`
+- Fill the `.env` file
+- Run `yarn start`
+- Access `http://localhost:3000/`
+- Run Json Server `json-server server.json -p 3001 -w -d 500`
 
-```
-yarn
-```
+## Used technologies
 
-Por fim, execute o servidor de desenvolvimento e o JSON-server, o aplicativo deve estar disponível na seguinte URL: http://localhost:3000
-
-```
-yarn start
-```
-
-```
-json-server server.json -p 3001 -w -d 500
-```
-
-## Screenshots
-
-![Screenshot 1](https://image.ibb.co/gfu9Vp/home.png)
-![Screenshot 2](https://image.ibb.co/gRMCi9/detalhe.png)
-![Screenshot 3](https://image.ibb.co/d16Oqp/carrinho.png)
-
-## Construído com
-
--   [React](https://reactjs.org)
--   [Axios](https://github.com/axios/axios)
--   [JSON-server](https://github.com/typicode/json-server)
--   [Redux Saga](https://redux-saga.js.org)
--   [Redux](https://redux.js.org)
+- React
+- JSON-server
+- Redux Saga
+- Styled Component
+- Other React JS libs
